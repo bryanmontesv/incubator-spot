@@ -1,0 +1,34 @@
+{
+  "metadata": {
+      "pipeline": [
+          "dns"
+      ],
+      "type": "scoring",
+      "endpoint": "/someProxy"
+  },
+  "widget_title": "DXL",
+  "_comment" : "JSON VALIDATOR http://jsonlint.com/",
+  "action_schema": {
+    "uiSchema": {
+      "select": {
+        "ui:placeholder": "Choose an option"
+      }
+    },
+    "formData": {
+      "select": ""
+    },
+    "schema": {
+      "type": "object",
+      "required": ["number"],
+      "method": "query{endaction{elems}}",
+      "properties": {
+        "title": {"type": "string", "title": "Title", "default": "A new task"},
+        "number": {"type": "integer", "title": "Number", "default": "This is a number"},
+        "done": {"type": "boolean", "title": "Done?"}
+      }
+    }
+  },
+  "setup_schema": {
+
+  }
+}

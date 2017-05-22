@@ -50,7 +50,7 @@ class GraphQLStore {
                 query,
                 variables
             }),
-            url: SpotConstants.GRAPHQL_ENDPOINT
+            url: this.endPoint || SpotConstants.GRAPHQL_ENDPOINT
         })
         .done((response) => {
             if (response.errors) {

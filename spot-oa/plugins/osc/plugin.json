@@ -1,0 +1,74 @@
+{
+    "_comment": "JSON VALIDATOR http://jsonlint.com/", 
+    "action_schema": {
+        "method": "query ($action: Int!, $ip: SpotIpType!){osc{executeAction(action: $action, ip: $ip) {action,ip,status}}}", 
+        "schema": {
+            "properties": {
+                "action": {
+                    "enum": [
+                        1, 
+                        2, 
+                        3
+                    ], 
+                    "enumNames": [
+                        "Block", 
+                        "Quarantine", 
+                        "Delete"
+                    ], 
+                    "title": "OSC select option", 
+                    "type": "number"
+                }
+            }, 
+            "required": [
+                "action"
+            ], 
+            "type": "object"
+        }, 
+        "uiSchema": {
+            "action": {
+                "ui:placeholder": "Choose an option"
+            }
+        }
+    }, 
+    "formData": {
+        "select": ""
+    }, 
+    "metadata": {
+        "endpoint": "/osc", 
+        "pipeline": [
+            "flow", 
+            "dns"
+        ], 
+        "type": "scoring"
+    }, 
+    "setup_schema": {
+        "formData": {
+            "host": "hostname:port"
+        }, 
+        "method": "mutation ($user: String, $password: String, $host: String) {osc {setupSchema (user: $user, password: $password, host: $host){status}}}", 
+        "schema": {
+            "properties": {
+                "host": {
+                    "title": "Host", 
+                    "type": "string"
+                }, 
+                "password": {
+                    "title": "Password", 
+                    "type": "string"
+                }, 
+                "user": {
+                    "title": "User", 
+                    "type": "string"
+                }
+            }, 
+            "type": "object"
+        }, 
+        "uiSchema": {
+            "password": {
+                "ui:help": "Hint: Make it strong!", 
+                "ui:widget": "password"
+            }
+        }
+    }, 
+    "widget_title": "OSC"
+}

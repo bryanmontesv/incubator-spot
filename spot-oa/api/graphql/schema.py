@@ -7,6 +7,7 @@ from graphql import (
 from flow import QueryType as NetflowQueryType, MutationType as NetflowMutationType, TYPES as NetflowTypes
 from dns import QueryType as DnsQueryType, MutationType as DnsMutationType, TYPES as DnsTypes
 from proxy import QueryType as ProxyQueryType, MutationType as ProxyMutationType, TYPES as ProxyTypes
+from config import QueryType as ConfigQueryType
 
 SpotSchema = GraphQLSchema(
   query=GraphQLObjectType(
@@ -25,6 +26,11 @@ SpotSchema = GraphQLSchema(
       'proxy': GraphQLField(
         type=ProxyQueryType,
         description='Proxy Logs contains the requests in between clients and Proxy servers',
+        resolver=lambda *_: {}
+      ),
+      'config': GraphQLField(
+        type=ConfigQueryType,
+        description='Config Logs contains the requests in between clients and Config services',
         resolver=lambda *_: {}
       )
     }

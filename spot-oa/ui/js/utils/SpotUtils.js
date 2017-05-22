@@ -120,11 +120,11 @@ var SpotUtils = {
     str = str.toLowerCase();
     // cache the jQuery object of the <select> element
     var $el = $(selectionEl);
-    if (!$el.data("options")) {
+    if (!$el.data('options')) {
       // cache all the options inside the <select> element for easy recover
-      $el.data("options", $el.find("option").clone());
+      $el.data('options', $el.find('option').clone());
     }
-    var newOptions = $el.data("options").filter(function () {
+    var newOptions = $el.data('options').filter(function () {
       var text = $(this).text();
       if (isCaseSensitive)
       text = text.toLowerCase();
@@ -149,6 +149,13 @@ var SpotUtils = {
       $(`#${elOne}`).css({'order': '1'});
       $(`#${elTwo}`).css({'order': '2'});
     }
+  },
+  findObjArray(myArray, name, objetive) {
+    //return a position of the array requested by an attribute name and the value
+    for(var i = 0, leng = myArray.length; i < leng; i++) {
+      if (myArray[i][name] === objetive) return i;
+    }
+    return -1;
   }
 };
 

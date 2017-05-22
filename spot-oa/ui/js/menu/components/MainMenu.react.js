@@ -3,6 +3,8 @@
 var React = require('react');
 
 var MainMenuStore = require('../stores/MainMenuStore');
+const SpotActions = require('../../actions/SpotActions');
+const SpotUtils = require('../../utils/SpotUtils');
 
 var MainMenu = React.createClass({
   getInitialState: function () {
@@ -15,6 +17,9 @@ var MainMenu = React.createClass({
   },
   componentWillUnmount: function () {
     MainMenuStore.removeChangeMenuListener(this.onChange);
+  },
+  componentDidUpdate: function () {
+    SpotActions.setDate(SpotUtils.getCurrentDate());
   },
   render: function () {
     let createdMenu = this.state.menu.map((dropdwn) =>
