@@ -27,11 +27,10 @@ var ScoreNotebook = React.createClass({
   componentDidMount: function() {
     SuspiciousStore.addChangeDataListener(this._onChange);
     NotebookStore.addChangeDataListener(this._onChange);
-    this.setState({size: NotebookStore.completeClass})
   },
   componentWillUnmount: function () {
     SuspiciousStore.removeChangeDataListener(this._onChange);
-    NotebookStore.addChangeDataListener(this._onChange);
+    NotebookStore.removeChangeDataListener(this._onChange);
   },
   render: function () {
     var content, state, data, cssCls, uriArr = [];
@@ -55,6 +54,7 @@ var ScoreNotebook = React.createClass({
     }
     else if (!state.data || state.data.length === 0)
     {
+      // EdInActions.setClassWidth(false);
       content = (
         <div className="text-center">
           {this.emptySetMessage || ''}
@@ -63,6 +63,7 @@ var ScoreNotebook = React.createClass({
     }
     else
     {
+      // EdInActions.setClassWidth(true);
       state.data.map((obj) => {
         if(uriArr.indexOf(obj.fulluri) === -1) {
           uriArr.push(obj.fulluri);
@@ -106,6 +107,7 @@ var ScoreNotebook = React.createClass({
   _onChange: function() {
     const data = SuspiciousStore.getData();
     this.setState(data);
+    this.setState({size: NotebookStore.completeClass})
   },
   reset: function() {
     swal({

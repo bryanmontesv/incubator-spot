@@ -67,6 +67,7 @@ const Panel = require('../../js/components/Panel.react');
 const SuspiciousPanel = require('./components/SuspiciousPanel.react');
 const NetworkViewPanel = require('./components/NetworkViewPanel.react');
 const ScoreNotebook = require('./components/ScoreNotebook.react');
+const WidgetController = require('./components/WidgetController.react');
 const DetailsPanel = require('./components/DetailsPanel.react');
 
 ReactDOM.render(
@@ -84,6 +85,7 @@ ReactDOM.render(
           <PanelRow title={SpotConstants.SCORING_PANEL}>
             <Panel title={SpotConstants.SCORING_PANEL} reloadable switchable onReload={EdInActions.reloadSuspicious} onSwitch={switchComponents} className="col-md-12">
               <ScoreNotebook />
+              <WidgetController show='all'/>
             </Panel>
           </PanelRow>
           <PanelRow title={SpotConstants.DETAILS_PANEL}>
@@ -99,6 +101,7 @@ ReactDOM.render(
 const initial_filter = SpotUtils.getCurrentFilter();
 
 // Set search criteria
+EdInActions.getWidgets('scoring,menu', 'proxy');
 SpotActions.setDate(SpotUtils.getCurrentDate());
 initial_filter && EdInActions.setFilter(initial_filter);
 
