@@ -10,7 +10,8 @@ var IPythonNotebookPanel = React.createClass({
     propTypes: {
         title: React.PropTypes.string.isRequired,
         date: React.PropTypes.string.isRequired,
-        ipynb: React.PropTypes.string.isRequired
+        ipynb: React.PropTypes.string.isRequired,
+        ipython: React.PropTypes.string.isRequired
     },
     statics: {
         createIPythonNotebookClosure: function (title, easyMode) {
@@ -68,17 +69,18 @@ var IPythonNotebookPanel = React.createClass({
         SpotStore.removePanelToggleModeListener(this._onToggleMode);
     },
     render: function () {
-        var ipynbPath;
+      if(this.props.ipython === SpotConstants.NO_IPYTHON_NOTEBOOK && this.state.easyMode) { //if ipython gets "NoIpythonNotebooks" from the requested component, it wont show the ipython notebook, it will show a react component instead
+        this.setState({easyMode: false});
+      }
 
-        ipynbPath = this.props.ipynb.replace('${date}', this.state.date);
+      var ipynbPath;
+      ipynbPath = this.props.ipynb.replace('${date}', this.state.date);
 
-        return (
-            <iframe
-                name="nbView"
-                className="nbView"
-                src={SpotConstants.NOTEBOOKS_PATH + '/' + ipynbPath + (this.state.easyMode ? '#showEasyMode' : '#showNinjaMode') }>
-            </iframe>
-        );
+      return (
+          <iframe name="nbView" className="nbView"
+              src={SpotConstants.NOTEBOOKS_PATH + '/' + ipynbPath + (this.state.easyMode ? '#showEasyMode' : '#showNinjaMode') }>
+          </iframe>
+      );
     },
     _onDateChange: function () {
         var date = SpotStore.getDate().replace(/-/g, '');
