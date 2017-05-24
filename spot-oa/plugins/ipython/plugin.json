@@ -4,7 +4,10 @@
           "dns"
       ],
       "type": "menu",
-      "endpoint": ""
+      "endpoint": "",
+      "plugin_name": "Ipython",
+      "plugin_version": "0.1.01",
+      "plugin_description": "A tiny menu for Ipython Notebooks"
   },
   "_comment" : "JSON VALIDATOR http://jsonlint.com/",
   "link": "ipython/html/notebook.html",

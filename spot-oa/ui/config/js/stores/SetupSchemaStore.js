@@ -12,6 +12,7 @@ class SetupSchemaStore extends ObservableWithHeadersGraphQLStore {
         this.query = '';
         this.formData = {};
         this.lastFormData = {};
+        this.name = '';
     }
 
     getQuery() {

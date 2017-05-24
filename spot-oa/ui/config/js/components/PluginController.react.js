@@ -32,17 +32,13 @@ var PluginController = React.createClass({
     PluginStatusStore.removeChangeDataListener(this._onChangePlugins);
   },
   render: function() {
-    let plugin_body, plugin_headers, content,
+    let plugin_body, plugin_headers, content, gridBody = [],
         {state = [], requests = [], pluginsStatus = []} = {
                                                             state: this.state.plugins,
                                                             requests:this.state.response,
                                                             pluginsStatus: this.state.pluginsStatus
                                                           };
     let gridHeaders = ['Plugin Name', 'Version', 'Description', 'Enable/Disable', 'View/Edit'];
-    let gridBody = [{plugin_name: 'DXL', version: '0.1.2', description: 'DXL is a Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed..', status: true, conf: 'plugin.json'},
-                    {plugin_name: 'OSC', version: '1.0.89', description: 'Open Security Controller,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed..Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed..', status: true, conf: 'plugin.json'},
-                    {plugin_name: 'Zeppelin', version: '4.96.2', description: 'Zeppelin, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed..', status: false, conf: 'plugin.json'}];
-
     const log = (methodSchema, endpoint, type ) => this.callMethod.bind(methodSchema, endpoint, type);
 
     if(requests.data && JSON.stringify(requests.data).indexOf('"status":true') !== -1) {
@@ -89,6 +85,12 @@ var PluginController = React.createClass({
       plugin_headers = gridHeaders.map((elem, i) =>
         <th key={'th_' + elem} className={'text-center ' + elem}>{elem}</th>
       );
+
+      // console.log(state.data)
+      state.data.forEach((elem, index) => {
+        let data = JSON.parse(elem.complete_schema.replace(/\'/g, '"'));
+        gridBody.push({plugin_name: data.metadata['plugin_name'], version: data.metadata['plugin_version'], description: data.metadata['plugin_description'], status: false, conf: 'plugin.json' });
+      });
 
       plugin_body = gridBody.map((elem, index) => {
         let cells, data = state ? JSON.parse(state.data[index].complete_schema.replace(/\'/g, '"')) : '';
@@ -158,6 +160,7 @@ var PluginController = React.createClass({
     SetupSchemaStore.endPoint = metadata.endpoint;
     SetupSchemaStore.query = query;
     SetupSchemaStore.formData = obj.formData;
+    SetupSchemaStore.name = metadata.plugin_name;
 
     EdInActions.sendWidgetMethodData();
   },
@@ -167,3 +170,28 @@ var PluginController = React.createClass({
 });
 
 module.exports = PluginController;
+
+
+
+
+
+// switch (e) {
+//   case 'status':
+//     typeElement = (
+//       <SwitchToggleButton isChecked={elem[e]} name={elem['plugin_name']} onChange={this.onEnableDisable}/>
+//     )
+//   break;
+//   case 'conf':
+//     if (typeof data.setup_schema !== "undefined" && Object.keys(data.setup_schema).length > 0) {
+//       typeElement = (
+//         <SpotModal title={elem['plugin_name']}
+//           body={
+//             <Form schema={data.setup_schema.schema} uiSchema={data.setup_schema.uiSchema || {}} onSubmit={log('submitted', data.metadata || {}, data.setup_schema.method || '')} onError={log('errors'), false} />
+//           }/>
+//       )
+//     }
+//   break;
+//   default:
+//     typeElement = elem[e];
+//   break;
+// }

@@ -1,12 +1,15 @@
 {
   "metadata": {
       "pipeline": [
-          "dns"
+          "dns",
+          "proxy"
       ],
       "type": "scoring",
-      "endpoint": "/someProxy"
+      "endpoint": "/someProxy",
+      "plugin_name": "DXL",
+      "plugin_version": "0.1",
+      "plugin_description": "DXL is a tool who Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
   },
-  "widget_title": "DXL",
   "_comment" : "JSON VALIDATOR http://jsonlint.com/",
   "action_schema": {
     "uiSchema": {

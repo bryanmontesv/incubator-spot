@@ -68,7 +68,7 @@ var WidgetController = React.createClass({
             <div className="panel panel-default">
               <div className="panel-heading">
                 <h4 className="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href={`#${ids}${i}`}>{data.widget_title}</a>
+                  <a data-toggle="collapse" data-parent="#accordion" href={`#${ids}${i}`}>{data.metadata.plugin_name}</a>
                 </h4>
               </div>
               <div id={`${ids}${i}`} className={'panel-body panel-collapse collapse panel-body-container container-box ' + (i === 0 ? 'in': '')}>

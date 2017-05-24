@@ -69,20 +69,39 @@ MutationType = GraphQLObjectType(
             type=GraphQLList(SetupSchemaType),
             description='API Server actions, used to connect with OSC Web services',
             args={
-                'user': GraphQLArgument(
+                'host_os': GraphQLArgument(
                     type=GraphQLString,
                     description='OSC User to try to connect on web services'
                 ),
-                'password': GraphQLArgument(
+                'user_os': GraphQLArgument(
                     type=GraphQLString,
                     description='OSC Password to try to connect on web services'
                 ),
-                'host': GraphQLArgument(
+                'password_os': GraphQLArgument(
+                    type=GraphQLString,
+                    description='Where should OSC needs to connect'
+                ),
+                'host_osc': GraphQLArgument(
+                    type=GraphQLString,
+                    description='OSC User to try to connect on web services'
+                ),
+                'user_osc': GraphQLArgument(
+                    type=GraphQLString,
+                    description='OSC Password to try to connect on web services'
+                ),
+                'password_osc': GraphQLArgument(
+                    type=GraphQLString,
+                    description='Where should OSC needs to connect'
+                ),
+                'ssl_os': GraphQLArgument(
                     type=GraphQLString,
                     description='Where should OSC needs to connect'
                 )
             },
-            resolver=lambda root, args, *_: Osc.setup_connect(user=args.get('user', ''), password=args.get('password', ''), host=args.get('host', '') )
+            resolver=lambda root, args, *_: Osc.setup_connect(host_os=args.get('host_os', ''), user_os=args.get('user_os', ''),
+                                                            password_os=args.get('password_os', ''), host_osc=args.get('host_osc', ''),
+                                                            user_osc=args.get('user_osc', ''), password_osc=args.get('password_osc', ''),
+                                                            ssl_os=args.get('ssl_os', ''))
         )
     }
 )
