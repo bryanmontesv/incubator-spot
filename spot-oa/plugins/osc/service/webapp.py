@@ -25,8 +25,11 @@ if __name__=='__main__':
 def load_jupyter_server_extension(nb_app):
     import tornado.web
     import tornado.wsgi
-    print ('Plugin is loading')
-    from populate_options import populateWidget
+    import sys
+    from os import path
+    sys.path.append(path.dirname(path.dirname(__file__)))
+    from resources.osc import populateWidget
+
     populateWidget()
 
     wsgi_app = tornado.wsgi.WSGIContainer(app)

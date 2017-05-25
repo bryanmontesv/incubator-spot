@@ -23,12 +23,12 @@ var PluginController = React.createClass({
   componentDidMount: function() {
     this.setState({ isChecked: this.props.isChecked });
     PluginsStore.addChangeDataListener(this._onChange);
-    SetupSchemaStore.addChangeDataListener(this._onChange);
+    SetupSchemaStore.addChangeDataListener(this._onResponseChange);
     PluginStatusStore.addChangeDataListener(this._onChangePlugins);
   },
   componentWillUnmount: function () {
     PluginsStore.removeChangeDataListener(this._onChange);
-    SetupSchemaStore.removeChangeDataListener(this._onChange);
+    SetupSchemaStore.removeChangeDataListener(this._onResponseChange);
     PluginStatusStore.removeChangeDataListener(this._onChangePlugins);
   },
   render: function() {
@@ -41,12 +41,15 @@ var PluginController = React.createClass({
     let gridHeaders = ['Plugin Name', 'Version', 'Description', 'Enable/Disable', 'View/Edit'];
     const log = (methodSchema, endpoint, type ) => this.callMethod.bind(methodSchema, endpoint, type);
 
+    //check if request data did respond good or bad when the user submitted data
     if(requests.data && JSON.stringify(requests.data).indexOf('"status":true') !== -1) {
       swal('Success!', 'The service ' + Object.keys(requests.data)[0] + ' respond with success', 'success');
+      EdInActions.getWidgets('scoring,menu', '');
     } else if(requests.data && JSON.stringify(requests.data).indexOf('"status":false') !== -1){
       swal('Error!', 'The service ' + Object.keys(requests.data)[0] + ' respond with an error, please verify', 'error');
     }
 
+    //this message will show when the user enabled or disabled a plugin
     pluginsStatus.forEach((elem, i) => {
       let composeMsg = elem.status == true ? 'enabled correctly' : 'disabled, some features can disappear from UI'
       let title = elem.status ? 'Success!' : 'Warning!',
@@ -55,38 +58,32 @@ var PluginController = React.createClass({
       swal(title, message, action);
     });
 
-    if (state.error)
-    {
+    //check if state has data
+    if (state.error) {
       content = (
         <div className="text-center text-danger">
           {state.error}
         </div>
       );
-    }
-    else if (state.loading)
-    {
+    } else if (state.loading) {
       content = (
         <div className="spot-loader">
           Loading <span className="spinner"></span>
         </div>
       );
-    }
-    else if (!state.data || state.data.length === 0)
-    {
+    } else if (!state.data || state.data.length === 0) {
       content = (
         <div className="text-center">
           {this.emptySetMessage || ''}
         </div>
       );
-    }
-    else
-    {
+    } else {
 
       plugin_headers = gridHeaders.map((elem, i) =>
         <th key={'th_' + elem} className={'text-center ' + elem}>{elem}</th>
       );
 
-      // console.log(state.data)
+      //if state has data then it will check for the data that will be placed on plugins table
       state.data.forEach((elem, index) => {
         let data = JSON.parse(elem.complete_schema.replace(/\'/g, '"'));
         gridBody.push({plugin_name: data.metadata['plugin_name'], version: data.metadata['plugin_version'], description: data.metadata['plugin_description'], status: false, conf: 'plugin.json' });
@@ -108,7 +105,7 @@ var PluginController = React.createClass({
                 typeElement = (
                   <SpotModal title={elem['plugin_name']}
                     body={
-                      <Form schema={data.setup_schema.schema} uiSchema={data.setup_schema.uiSchema || {}} onSubmit={log('submitted', data.metadata || {}, data.setup_schema.method || '')} onError={log('errors'), false} />
+                      <Form schema={data.setup_schema.schema} uiSchema={data.setup_schema.uiSchema || {}} formData={data.setup_schema.formData || {}} onSubmit={log('submitted', data.metadata || {}, data.setup_schema.method || '')} onError={log('errors'), false} />
                     }/>
                 )
               }
@@ -149,12 +146,15 @@ var PluginController = React.createClass({
   },
   _onChange: function() {
     let plugins = PluginsStore.getData();
+    this.replaceState({plugins});   //we need to replace data because it need to empty the other 2 onChange methods
+  },
+  _onResponseChange: function() {
     let response = SetupSchemaStore.getData();
-    this.replaceState({plugins, response});
+    this.setState({response});      //when this response is executed, it will send a message saying what was the plugins return
   },
   _onChangePlugins: function() {
     let pluginsStatus = PluginStatusStore.getData();
-    this.setState({pluginsStatus: pluginsStatus.data});
+    this.setState({pluginsStatus: pluginsStatus.data});   //this response will respond with a true or false in case a plugin enabled or disabled
   },
   callMethod: function(metadata, query, obj) {
     SetupSchemaStore.endPoint = metadata.endpoint;
@@ -170,28 +170,3 @@ var PluginController = React.createClass({
 });
 
 module.exports = PluginController;
-
-
-
-
-
-// switch (e) {
-//   case 'status':
-//     typeElement = (
-//       <SwitchToggleButton isChecked={elem[e]} name={elem['plugin_name']} onChange={this.onEnableDisable}/>
-//     )
-//   break;
-//   case 'conf':
-//     if (typeof data.setup_schema !== "undefined" && Object.keys(data.setup_schema).length > 0) {
-//       typeElement = (
-//         <SpotModal title={elem['plugin_name']}
-//           body={
-//             <Form schema={data.setup_schema.schema} uiSchema={data.setup_schema.uiSchema || {}} onSubmit={log('submitted', data.metadata || {}, data.setup_schema.method || '')} onError={log('errors'), false} />
-//           }/>
-//       )
-//     }
-//   break;
-//   default:
-//     typeElement = elem[e];
-//   break;
-// }

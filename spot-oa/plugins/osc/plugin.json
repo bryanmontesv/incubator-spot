@@ -1,105 +1,112 @@
 {
-    "_comment": "JSON VALIDATOR http://jsonlint.com/",
-    "action_schema": {
-        "method": "query ($action: Int!, $ip: SpotIpType!){osc{executeAction(action: $action, ip: $ip) {action,ip,status}}}",
+    "setup_schema": {
+        "formData": {
+            "x_password_os": "1", 
+            "c_ssl_os": "Gaby", 
+            "b_password_osc": "5", 
+            "b_user_osc": "7", 
+            "a_host_os": "Bryan", 
+            "b_host_osc": "6", 
+            "plugin_name": "OSC", 
+            "a_user_os": "4"
+        }, 
+        "uiSchema": {
+            "x_password_os": {
+                "ui:widget": "password", 
+                "ui:help": "Open Stack password"
+            }, 
+            "b_password_osc": {
+                "ui:widget": "password", 
+                "ui:help": "Open Security Controller password"
+            }
+        }, 
+        "method": "mutation ($a_host_os: String, $a_user_os: String, $x_password_os: String, $b_host_osc: String, $b_user_osc: String, $b_password_osc: String, $c_ssl_os:String) {osc {setupSchema (host_os: $a_host_os, user_os: $a_user_os, password_os: $x_password_os, host_osc: $b_host_osc, user_osc: $b_user_osc, password_osc: $b_password_osc, ssl_os: $c_ssl_os){status}}}", 
         "schema": {
-            "properties": {
-                "action": {
-                    "enum": [
-                        1,
-                        2,
-                        3
-                    ],
-                    "enumNames": [
-                        "Block",
-                        "Quarantine",
-                        "Delete"
-                    ],
-                    "title": "OSC select option",
-                    "type": "number"
-                }
-            },
             "required": [
-                "action"
-            ],
-            "type": "object"
-        },
+                "a_host_os", 
+                "x_password_os", 
+                "a_user_os", 
+                "b_host_osc", 
+                "b_password_osc", 
+                "b_user_osc", 
+                "c_ssl_os"
+            ], 
+            "type": "object", 
+            "properties": {
+                "x_password_os": {
+                    "type": "string", 
+                    "title": "Open Stack Password"
+                }, 
+                "c_ssl_os": {
+                    "type": "string", 
+                    "title": "certified SSL"
+                }, 
+                "a_host_os": {
+                    "type": "string", 
+                    "title": "Open Stack Host"
+                }, 
+                "a_user_os": {
+                    "type": "string", 
+                    "title": "Open Stack User"
+                }, 
+                "b_password_osc": {
+                    "type": "string", 
+                    "title": "Open Security Controller Password"
+                }, 
+                "b_host_osc": {
+                    "type": "string", 
+                    "title": "Open Security Controller Host"
+                }, 
+                "b_user_osc": {
+                    "type": "string", 
+                    "title": "Open Security Controller User"
+                }
+            }
+        }
+    }, 
+    "_comment": "JSON VALIDATOR http://jsonlint.com/", 
+    "formData": {
+        "select": ""
+    }, 
+    "action_schema": {
         "uiSchema": {
             "action": {
                 "ui:placeholder": "Choose an option"
             }
-        }
-    },
-    "formData": {
-        "select": ""
-    },
-    "metadata": {
-        "endpoint": "/osc",
-        "pipeline": [
-            "flow",
-            "dns"
-        ],
-        "type": "scoring",
-        "plugin_name": "OSC",
-        "plugin_version": "1.0",
-        "plugin_description": "Open Security Controller,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed..Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.."
-    },
-    "setup_schema": {
-        "formData": {
-            "host": "hostname:port"
-        },
-        "method": "mutation ($a_host_os: String, $a_user_os: String, $x_password_os: String, $b_host_osc: String, $b_user_osc: String, $b_password_osc: String, $c_ssl_os:String) {osc {setupSchema (host_os: $a_host_os, user_os: $a_user_os, password_os: $x_password_os, host_osc: $b_host_osc, user_osc: $b_user_osc, password_osc: $b_password_osc, ssl_os: $c_ssl_os){status}}}",
+        }, 
+        "method": "query ($action: Int!, $ip: SpotIpType!){osc{executeAction(action: $action, ip: $ip) {action,ip,status}}}", 
         "schema": {
-            "properties": {
-                "a_host_os": {
-                    "title": "Open Stack Host",
-                    "type": "string"
-                },
-                "x_password_os": {
-                    "title": "Open Stack Password",
-                    "type": "string"
-                },
-                "a_user_os": {
-                    "title": "Open Stack User",
-                    "type": "string"
-                },
-                "b_host_osc": {
-                    "title": "Open Security Controller Host",
-                    "type": "string"
-                },
-                "b_password_osc": {
-                    "title": "Open Security Controller Password",
-                    "type": "string"
-                },
-                "b_user_osc": {
-                    "title": "Open Security Controller User",
-                    "type": "string"
-                },
-                "c_ssl_os": {
-                    "title": "certified SSL",
-                    "type": "string"
-                }
-            },
             "required": [
-              "a_host_os",
-              "x_password_os",
-              "a_user_os",
-              "b_host_osc",
-              "b_password_osc",
-              "b_user_osc",
-              "c_ssl_os"
-            ],
-            "type": "object"
-        },
-        "uiSchema": {
-            "x_password_os": {
-                "ui:help": "Open Stack password",
-                "ui:widget": "password"
-            },
-            "b_password_osc": {
-                "ui:help": "Open Security Controller password",
-                "ui:widget": "password"
+                "action"
+            ], 
+            "type": "object", 
+            "properties": {
+                "action": {
+                    "type": "number", 
+                    "enum": [
+                        1, 
+                        2, 
+                        3
+                    ], 
+                    "enumNames": [
+                        "Block", 
+                        "Quarantine", 
+                        "Delete"
+                    ], 
+                    "title": "OSC select option"
+                }
             }
         }
+    }, 
+    "metadata": {
+        "pipeline": [
+            "flow", 
+            "dns"
+        ], 
+        "endpoint": "/osc", 
+        "plugin_version": "1.0", 
+        "plugin_name": "OSC", 
+        "plugin_description": "Open Security Controller,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed..Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed..", 
+        "type": "scoring"
     }
 }
