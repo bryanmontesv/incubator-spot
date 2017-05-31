@@ -36,8 +36,41 @@ def get_files_from_subdirectories(a_dirs, wtype, pipeline, plugin_dir):
 Enable or disable a Plugin\'s service
 --------------------------------------------------------------------------
 """
-def plugins_status(name, status):
-    return [{'name': name, 'status': status}];
-    #TODO: Levantar o matar el servicio
-    #Status = true or false
-    #name =  Nombre del plugin
+def plugins_status(plugin_name, status):
+    plugins_path = os.path.join("{}/{}".format(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'plugins'))
+    folders = [name for name in os.listdir(plugins_path) if os.path.isdir(os.path.join(plugins_path, name))]
+
+    for schema in folders:
+        file_name = os.path.join("{}/{}".format(plugins_path, schema), 'plugin.json')
+        if os.path.isfile(file_name):
+            try:
+                with open(file_name) as json_file:
+                    data = json.load(json_file)
+                    if(status):
+                        data['metadata']['status'] = 1
+                    else:
+                        data['metadata']['status'] = 0
+                    if (data['metadata']['plugin_name'] == plugin_name):
+                        rewrite_json(file_name, data)
+            except:
+                return False
+
+    return [{'name': plugin_name, 'status': status}];
+
+    #TODO: Validar configuracion del plugin (checar si existe en base de datos, checar si hace connect con API del plugin)
+
+
+"""
+--------------------------------------------------------------------------
+========================Rewrite Json Function=============================
+--------------------------------------------------------------------------
+"""
+def rewrite_json(file_name, data):
+    try:
+        jsdata = json.dumps(data, indent=4, skipkeys=True, sort_keys=False)
+        asjs   = open(file_name, 'w')
+        asjs.write(jsdata)
+        asjs.close()
+
+    except:
+        return "Unable to write the file"

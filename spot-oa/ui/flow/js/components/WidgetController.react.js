@@ -66,28 +66,29 @@ var WidgetController = React.createClass({
     }
     if(schema.data) {
       plugins = schema.data.map((data, i) => {
-        data = JSON.parse(data.complete_json.replace(/\'/g, '"'))
+        data = JSON.parse(data.complete_json.replace(/\'/g, '"'));
 
-        switch (data.metadata.type) {
-          case 'menu':
-          this.makeMenu(data);
-          return;
-          break;
-          default:
-          validateWidgetsToShow = data.metadata.type === 'scoring' && this.props.show === 'all';
-          let ids = new Date().getTime();
-          return (
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h4 className="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href={`#${ids}${i}`}>{data.metadata.plugin_name}</a>
-                </h4>
-              </div>
-              <div id={`${ids}${i}`} className={'panel-body panel-collapse collapse panel-body-container container-box ' + (i === 0 ? 'in': '')}>
-                <Form schema={data.action_schema.schema} uiSchema={data.action_schema.uiSchema} onSubmit={log('submitted', data.action_schema.method, data.metadata.endpoint)} onError={log('errors'), false} />
-              </div>
-            </div>
-          )
+        if(data.metadata.status === 1) {
+          switch (data.metadata.type) {
+            case 'menu':
+              this.makeMenu(data);
+            break;
+            default:
+              validateWidgetsToShow = data.metadata.type === 'scoring' && this.props.show === 'all';
+              let ids = new Date().getTime();
+              return (
+                <div className="panel panel-default">
+                  <div className="panel-heading">
+                    <h4 className="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href={`#${ids}${i}`}>{data.metadata.plugin_name}</a>
+                    </h4>
+                  </div>
+                  <div id={`${ids}${i}`} className={'panel-body panel-collapse collapse panel-body-container container-box ' + (i === 0 ? 'in': '')}>
+                    <Form schema={data.action_schema.schema} uiSchema={data.action_schema.uiSchema} onSubmit={log('submitted', data.action_schema.method, data.metadata.endpoint)} onError={log('errors'), false} />
+                  </div>
+                </div>
+              )
+          }
         }
       });
     }

@@ -114,7 +114,7 @@ QueryType = GraphQLObjectType(
                     description='Plugin\'s status that will be executed (true=enabled, false=disabled).'
                 )
             },
-            resolver=lambda root, args, *_: Config.plugins_status(name=args.get('name'), status=args.get('status'))
+            resolver=lambda root, args, *_: Config.plugins_status(plugin_name=args.get('name'), status=args.get('status'))
         )
     }
 )

@@ -86,7 +86,7 @@ var PluginController = React.createClass({
       //if state has data then it will check for the data that will be placed on plugins table
       state.data.forEach((elem, index) => {
         let data = JSON.parse(elem.complete_schema.replace(/\'/g, '"'));
-        gridBody.push({plugin_name: data.metadata['plugin_name'], version: data.metadata['plugin_version'], description: data.metadata['plugin_description'], status: false, conf: 'plugin.json' });
+        gridBody.push({plugin_name: data.metadata['plugin_name'], version: data.metadata['plugin_version'], description: data.metadata['plugin_description'], status: data.metadata['status'], conf: 'plugin.json' });
       });
 
       plugin_body = gridBody.map((elem, index) => {
@@ -165,6 +165,7 @@ var PluginController = React.createClass({
     EdInActions.sendWidgetMethodData();
   },
   onEnableDisable: function(name, status) {
+    console.log(name)
     EdInActions.enableDisablePlugin(name, status);
   }
 });

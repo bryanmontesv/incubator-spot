@@ -4,6 +4,7 @@
           "dns",
           "proxy"
       ],
+      "status": 0,
       "type": "scoring",
       "endpoint": "/someProxy",
       "plugin_name": "DXL",

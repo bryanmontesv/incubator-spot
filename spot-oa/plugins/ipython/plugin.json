@@ -3,6 +3,7 @@
       "pipeline": [
           "dns"
       ],
+      "status": 1,
       "type": "menu",
       "endpoint": "",
       "plugin_name": "Ipython",
