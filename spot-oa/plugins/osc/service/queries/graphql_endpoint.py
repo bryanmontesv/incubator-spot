@@ -105,7 +105,7 @@ MutationType = GraphQLObjectType(
                     type=GraphQLString,
                     description='Where should Open Stack needs to connect'
                 ),
-                'a_compute_api_os': GraphQLArgument(
+                'compute_api_os': GraphQLArgument(
                     type=GraphQLString,
                     description='Open Stack Compute Api'
                 ),
