@@ -37,10 +37,13 @@ var WidgetController = React.createClass({
 
     //first, validate if request or schema has data, if it does then apply some functions
     if(requests.data && JSON.stringify(requests.data).indexOf('"status":true') !== -1) {
-      let msg = "The action you deployed was made successfully on: ";
-      if(!requests.data.osc) {
-        msg = requests.data.osc.executeAction.msg || "Error"
+      let msg = "The action you deployed was made successfully on";
+      let pluginObj = requests.data[Object.keys(requests.data)[0]];
+      let propsPluginResponse = pluginObj[Object.keys(pluginObj)[0]][0].msg;
+      if(propsPluginResponse) {
+        msg = propsPluginResponse || "Error"
       }
+
       swal({
         title: 'Success',
         text:  msg + ': ' + WidgetRequestStore.ip,
@@ -53,7 +56,13 @@ var WidgetController = React.createClass({
 
       });
     } else if(requests.data && JSON.stringify(requests.data).indexOf('"status":false') !== -1){
-      swal('Error!','There were an error trying to deploy an action on: ' + WidgetRequestStore.ip, 'error');
+      let msg = "There were an error trying to deploy an action on";
+      let pluginObj = requests.data[Object.keys(requests.data)[0]];
+      let propsPluginResponse = pluginObj[Object.keys(pluginObj)[0]][0].msg;
+      if(propsPluginResponse) {
+        msg = propsPluginResponse || "Error"
+      }
+      swal('Error!', msg + ': ' + WidgetRequestStore.ip, 'error');
     }
     if(schema.data) {
       plugins = schema.data.map((data, i) => {

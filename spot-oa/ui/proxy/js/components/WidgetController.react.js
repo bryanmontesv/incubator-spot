@@ -39,9 +39,16 @@ var WidgetController = React.createClass({
 
     //first, validate if request or schema has data, if it does then apply some functions
     if(requests.data && JSON.stringify(requests.data).indexOf('"status":true') !== -1) {
+      let msg = "The action you deployed was made successfully on";
+      let pluginObj = requests.data[Object.keys(requests.data)[0]];
+      let propsPluginResponse = pluginObj[Object.keys(pluginObj)[0]][0].msg;
+      if(propsPluginResponse) {
+        msg = propsPluginResponse || "Error"
+      }
+
       swal({
         title: 'Success',
-        text: "The action you deploy was made successfully on: " + WidgetRequestStore.ip,
+        text:  msg + ': ' + WidgetRequestStore.ip,
         type: 'success',
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
@@ -50,6 +57,14 @@ var WidgetController = React.createClass({
       }).then(() => {
 
       });
+    } else if(requests.data && JSON.stringify(requests.data).indexOf('"status":false') !== -1){
+      let msg = "There were an error trying to deploy an action on";
+      let pluginObj = requests.data[Object.keys(requests.data)[0]];
+      let propsPluginResponse = pluginObj[Object.keys(pluginObj)[0]][0].msg;
+      if(propsPluginResponse) {
+        msg = propsPluginResponse || "Error"
+      }
+      swal('Error!', msg + ': ' + WidgetRequestStore.ip, 'error');
     }
 
     if(schema.data) {
