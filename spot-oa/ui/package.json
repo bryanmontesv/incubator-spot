@@ -19,6 +19,7 @@
     "object-assign": "^1.0.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-jsonschema-form": "^0.48.2",
     "sweetalert2": "^6.6.0",
     "underscore": "^1.8.3"
   },
@@ -42,6 +43,7 @@
     "build-flow": "cd flow/ && npm run build-all && cd ../",
     "build-dns": "cd dns/ && npm run build-all && cd ../",
     "build-proxy": "cd proxy/ && npm run build-all && cd ../",
+    "build-config": "cd config/ && npm run build-all && cd ../",
     "build-ingest-summary": "browserify js/ingest-summary.js | uglifyjs -cm > js/ingest-summary.bundle.min.js"
   },
   "browserify": {

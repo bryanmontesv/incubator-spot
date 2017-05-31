@@ -13,7 +13,7 @@ const DateUtils = require('./utils/DateUtils');
 // Build and Render Toolbar
 const DateInput = require('./components/DateInput.react');
 const OptionPicker = require('./components/OptionPicker.react');
-const MainMenu = require('../../js/menu/components/MainMenu.react');
+const MainMenu = require('../js/menu/components/MainMenu.react');
 
 // Find out period
 var startDate, endDate, today;

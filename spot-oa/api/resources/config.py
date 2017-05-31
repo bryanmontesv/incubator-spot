@@ -38,3 +38,6 @@ Enable or disable a Plugin\'s service
 """
 def plugins_status(name, status):
     return [{'name': name, 'status': status}];
+    #TODO: Levantar o matar el servicio
+    #Status = true or false
+    #name =  Nombre del plugin

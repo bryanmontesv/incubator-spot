@@ -87,7 +87,7 @@
                 "ui:placeholder": "Choose an option"
             }
         },
-        "method": "query ($action: Int!, $ip: SpotIpType!){osc{executeAction(action: $action, ip: $ip) {action,ip,status}}}",
+        "method": "query ($action: Int!, $ip: SpotIpType!){osc{executeAction(action: $action, ip: $ip) {action,ip,status,msg}}}",
         "schema": {
             "required": [
                 "action"

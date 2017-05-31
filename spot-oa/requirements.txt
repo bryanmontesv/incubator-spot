@@ -1,7 +1,7 @@
 # spot-oa dependencies
 numpy
 pandas
-Tld == 0.7.6
+Tld==0.7.6
 
 # spot-ui dependencies
 jsonschema
@@ -11,7 +11,7 @@ tornado
 mistune
 pygments
 terminado
-ipython == 3.2.1
+ipython==3.2.1
 
 # GraphQL API dependencies
 flask
