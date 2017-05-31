@@ -37,9 +37,13 @@ var WidgetController = React.createClass({
 
     //first, validate if request or schema has data, if it does then apply some functions
     if(requests.data && JSON.stringify(requests.data).indexOf('"status":true') !== -1) {
+      let msg = "The action you deployed was made successfully on: ";
+      if(!requests.data.osc) {
+        msg = requests.data.osc.executeAction.msg || "Error"
+      }
       swal({
         title: 'Success',
-        text: "The action you deploy was made successfully on: " + WidgetRequestStore.ip,
+        text:  msg + ': ' + WidgetRequestStore.ip,
         type: 'success',
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
