@@ -14,7 +14,7 @@
                 "ui:help": "Open Security Controller password"
             }
         },
-        "method": "mutation ($b_osc_api: String, $a_compute_api_os: String, $a_identity_api_os: String, $a_project_id_os: String, $a_project_name_os: String, $a_user_os: String, $x_password_os: String, $b_virtual_connector_osc: String, $b_user_osc: String, $b_password_osc: String, $c_ssl_os:String) {osc {setupSchema (osc_api: $b_osc_api, compute_api_os: $a_compute_api_os, identity_api_os: $a_identity_api_os, project_id_os: $a_project_id_os, host_os: $a_project_name_os, user_os: $a_user_os, password_os: $x_password_os, host_osc: $b_virtual_connector_osc, user_osc: $b_user_osc, password_osc: $b_password_osc, ssl_os: $c_ssl_os){status}}}",
+        "method": "mutation ($b_osc_api: String, $a_compute_api_os: String, $a_identity_api_os: String, $a_project_id_os: String, $a_project_name_os: String, $a_user_os: String, $x_password_os: String, $b_virtual_connector_osc: String, $b_user_osc: String, $b_password_osc: String, $c_ssl_os: String) {osc {setupSchema(osc_api: $b_osc_api, compute_api_os: $a_compute_api_os, identity_api_os: $a_identity_api_os, project_id_os: $a_project_id_os, project_name_os: $a_project_name_os, user_os: $a_user_os, password_os: $x_password_os, virtual_connector_osc: $b_virtual_connector_osc, user_osc: $b_user_osc, password_osc: $b_password_osc, ssl_os: $c_ssl_os) {status}}}",
         "schema": {
             "required": [
                 "a_project_name_os",
