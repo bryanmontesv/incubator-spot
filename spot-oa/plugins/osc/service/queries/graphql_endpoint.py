@@ -32,6 +32,11 @@ PluginsWidgetsType = GraphQLObjectType(
             type=GraphQLBoolean,
             description='Resolver',
             resolver=lambda root, *_: root.get('success')
+        ),
+        'msg': GraphQLField(
+            type=GraphQLString,
+            description='Resolver',
+            resolver=lambda root, *_: root.get('msg')
         )
     }
 )
