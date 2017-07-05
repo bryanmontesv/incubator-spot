@@ -109,3 +109,31 @@ It depends what you want to do. For example, if you just need to add some link i
 
 
 **Scoring plugins** takes a little bit more time to elaborate. You need to add 2 more things, `$ setup_schema` and `$ action_schema` for example:
+```
+{
+  "metadata": {
+      "pipeline": [
+          	"dns",
+	“flow”,
+	“proxy”
+      ],
+      "type": "scoring",
+      "endpoint": "/osc",
+      "plugin_name": "OSC",
+      "plugin_version": "1.0",
+      "plugin_description": "Security controller"
+  },
+  "_comment" : "JSON VALIDATOR http://jsonlint.com/",
+  "setup_schema": {
+	
+   },
+   "action_schema": {
+	
+   }
+}
+```
+
+If your plugin connects to somewhere and you need to change the values, you can do it on the plugin adminer. For that reason we use `$setup_schema`, setup schema is a web form used to give some configurations to a server, credentials, paths, etc. For example:
+
+![Ingest Framework](../spot-oa/plugins/setup_chema.png)
+
