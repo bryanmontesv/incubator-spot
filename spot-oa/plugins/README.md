@@ -102,5 +102,7 @@ It depends what you want to do. For example, if you just need to add some link i
 - Plugin_description: description. (optional)
 
 **_comment:** in case you want to remember something about your plugin (optional)
-**Link:** path of your html file. (Necessary)
-**Name:** name of your link. Text that is going to be shown on plugins menu. (Necessary)
+
+**Link:** path of your html file. (Required)
+
+**Name:** name of your link. Text that is going to be shown on plugins menu. (Required)
