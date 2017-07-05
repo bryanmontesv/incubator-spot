@@ -106,3 +106,6 @@ It depends what you want to do. For example, if you just need to add some link i
 **Link:** path of your html file. (Required)
 
 **Name:** name of your link. Text that is going to be shown on plugins menu. (Required)
+
+
+**Scoring plugins** takes a little bit more time to elaborate. You need to add 2 more things, `$ setup_schema` and `$ action_schema` for example:
