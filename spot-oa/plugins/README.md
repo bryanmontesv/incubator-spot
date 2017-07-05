@@ -93,3 +93,14 @@ It depends what you want to do. For example, if you just need to add some link i
 }
 ```
 
+### **Metadata:**
+- Pipeline, it stands for flow, dns and proxy is an array, the UI is capable of detect on which pipeline you will show that plugin. (Required)
+- Type: where the plugin will be placed, scoring, or menu. (Required)
+- Endpoint: In case your service has some /service-or-api (just for scoring types). (optional)
+- Plugin_name: the name of your plugin. (Required)
+- Plugin_version: version		(optional)
+- Plugin_description: description. (optional)
+
+**_comment:** in case you want to remember something about your plugin (optional)
+**Link:** path of your html file. (Necessary)
+**Name:** name of your link. Text that is going to be shown on plugins menu. (Necessary)
