@@ -29,7 +29,7 @@ Each pipeline has their own Stores to make that controller works: store’s path
 - spot-oa/ui/dns/js/stores/WidgetFormStore.js
 - spot-oa/ui/ dns /js/stores/WidgetRequestsStore.js
 - spot-oa/ui/proxy/js/stores/WidgetFormStore.js
-- spot-oa/ui/ proxy /js/stores/WidgetRequestsStore.js
+- spot-oa/ui/proxy/js/stores/WidgetRequestsStore.js
 
 WidgetFormStore make a requests to bring the information of each plugin and show it into SPOT.
 
