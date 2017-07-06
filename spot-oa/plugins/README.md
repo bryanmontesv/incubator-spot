@@ -22,7 +22,7 @@ Paths:
 - spot-oa/ui/dns/js/components/WidgetController.react.js
 - spot-oa/ui/proxy/js/components/WidgetController.react.js
 
-Each pipeline has their own Stores to make that controller works: store’s path
+Each pipeline has their own Stores to make that controller works: store’s path.
 
 - spot-oa/ui/flow/js/stores/WidgetFormStore.js
 - spot-oa/ui/flow/js/stores/WidgetRequestsStore.js
@@ -31,7 +31,7 @@ Each pipeline has their own Stores to make that controller works: store’s path
 - spot-oa/ui/proxy/js/stores/WidgetFormStore.js
 - spot-oa/ui/ proxy /js/stores/WidgetRequestsStore.js
 
-WidgetFormStore make a requests to bring the information of each plugin and show it into SPOT
+WidgetFormStore make a requests to bring the information of each plugin and show it into SPOT.
 
 WidgetRequestsStore make a request to send the information of the submitted plugin. The URL is on the metadata (endpoint) of each plugin.json
 
@@ -44,10 +44,10 @@ There you can find actions like:
 - changeMenu
 - enableDisablePlugin
 
-Those actions performs different behaviors on SPOT, for example
+Those actions performs different behaviors on SPOT, for example:
 
 - getWidgets: when the page is loaded it calls another request to get all plugins for that pipeline.
-- sendWidgetMethodData: when the user submits the web form, it send a request including all data from the submitted plugin
+- sendWidgetMethodData: when the user submits the web form, it send a request including all data from the submitted plugin.
 - changeMenu: This action is performed when SPOT detect a Menu type plugin.
 - enableDisablePlugin: When the user activate or deactivate a plugin from plugin manager.
 
@@ -55,7 +55,7 @@ Each function has a dispatcher, every dispatcher has a constant. Constants are p
 
 To manage and edit plugins configuration you will need to check how PluginsController.react.js works. Is almost the same as WidgetController.react.js, it has a store to Get all plugins, it has a store to submit data from each plugin, and an extra store, just to enable or disable certain plugin.
 
-The location of those files 
+The location of those files: 
 
 - spot-oa/ui/config/js/components/PluginController.react.js
 - spot-oa/ui/config/js/stores/PluginsStore.js
@@ -101,7 +101,7 @@ It depends what you want to do. For example, if you just need to add some link i
 - Plugin_version: version		(optional)
 - Plugin_description: description. (optional)
 
-**_comment:** in case you want to remember something about your plugin (optional)
+**_comment:** in case you want to remember something about your plugin. (optional)
 
 **Link:** path of your html file. (Required)
 
@@ -139,7 +139,7 @@ You can edit some service using a `$setup_schema`.
 
 For the other hand `$action_schema` is used to make a plugin inside SPOT, it can be anything for example a single combo box or just a single check box or maybe a huge form to perform some actions. For example:
 
-If your plugin doesn’t need a setup_schema just keep it empty like this  
+If your plugin doesn’t need a setup_schema just keep it empty like this:  
  ```
  "setup_schema": {
 	
@@ -181,7 +181,7 @@ If you have done a plugin and it doesn’t show or you have some troubles, you c
 5.	Inside your plugin’s folder you can add some other folders to put a service file or ssh file.
 6.	Create a “plugin.json” file. You cannot name it different.
 
-Finally you’ll see a folder like this
+Finally you’ll see a folder like this:
 
 ### **How can I get a value from Scoring Panel?**
 You just need to select 1 value from the select picker, for example, if you want to get a source IP from Flow, you need to click to that value.
