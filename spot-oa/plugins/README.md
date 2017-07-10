@@ -141,6 +141,8 @@ You can edit some service using a `$setup_schema`.
 
 For the other hand `$action_schema` is used to make a plugin inside SPOT, it can be anything for example a single combo box or just a single check box or maybe a huge form to perform some actions. For example:
 
+![action schema](https://github.com/bryanmontesv/incubator-spot/blob/SPOT-Widgets-Plugins/spot-oa/plugins/Images/action_schema.png)
+
 If your plugin doesn’t need a setup_schema just keep it empty like this:  
  ```
  "setup_schema": {
@@ -173,6 +175,8 @@ If you have done a plugin and it doesn’t show or you have some troubles, you c
 2.	Inside your folder you can make another folder for html pages, add a HTML file.
 3.	Create a plugin.json inside your plugin folder for example:
 
+![pj example](https://github.com/bryanmontesv/incubator-spot/blob/SPOT-Widgets-Plugins/spot-oa/plugins/Images/pj_example.png)
+
 4.	Done, you need to write the path to your file, for example my-plugin/html/my_html.html
 
 ### **Which steps you will need to take to do a scoring plugin?**
@@ -185,12 +189,20 @@ If you have done a plugin and it doesn’t show or you have some troubles, you c
 
 Finally you’ll see a folder like this:
 
+![pj example](https://github.com/bryanmontesv/incubator-spot/blob/SPOT-Widgets-Plugins/spot-oa/plugins/Images/pj__files.png)
+
 ### **How can I get a value from Scoring Panel?**
 You just need to select 1 value from the select picker, for example, if you want to get a source IP from Flow, you need to click to that value.
 
+![pj example](https://github.com/bryanmontesv/incubator-spot/blob/SPOT-Widgets-Plugins/spot-oa/plugins/Images/score.png)
+
 The same if you want to take an URL from DNS.
 
+![pj example](https://github.com/bryanmontesv/incubator-spot/blob/SPOT-Widgets-Plugins/spot-oa/plugins/Images/URL_DNS.png)
+
 For proxy, the same. When you submit the plugin it will take that value and send it on an alias, in this case for everyone it’s called “ip”.
+
+![pj example](https://github.com/bryanmontesv/incubator-spot/blob/SPOT-Widgets-Plugins/spot-oa/plugins/Images/proxy.png)
 
 ## **Plugin.json Scoring type example**
 ```
