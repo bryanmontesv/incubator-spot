@@ -135,7 +135,7 @@ It depends what you want to do. For example, if you just need to add some link i
 
 If your plugin connects to somewhere and you need to change the values, you can do it on the plugin adminer. For that reason we use `$setup_schema`, setup schema is a web form used to give some configurations to a server, credentials, paths, etc. For example:
 
-![setup schema](../spot-oa/plugins/images/setup_chema.png)
+![setup chema](../spot-oa/plugins/images/setup_chema.png)
 
 You can edit some service using a `$setup_schema`.
 
